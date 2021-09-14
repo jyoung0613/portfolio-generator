@@ -1,3 +1,3 @@
 const generatePage = () => 'Name: Jane, Github: janehub';
 
-generatePage();
+console.log(generatePage());
