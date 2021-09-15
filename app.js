@@ -2,21 +2,45 @@ const inquirer = require('inquirer');
 
 const promptUser = () => {
   return inquirer.prompt([
+    // Question for user name
     {
       type: 'input',
       name: 'name',
-      message: 'What is your name?'
+      message: 'What is your name? (Required)',
+      validate: nameInput => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log('Please enter your name!');
+        }
+      }
     },
+    // Question for GitHub username
     {
       type: 'input',
       name: 'github',
-      message: 'Enter your GitHub Username'
+      message: 'Enter your GitHub Username (Required)',
+      validate: nameInput => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log('Please enter your GitHub username!');
+        }
+      }  
     },
+    // Question for info about user
     {
       type: 'input',
       name: 'about',
-      message: 'Provide some information about yourself:'
-    }
+      message: 'Provide some information about yourself: (Required)',
+      validate: nameInput => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log('Please enter detail in the about section for yourself!');
+        }
+      }
+    },
   ]);
 };
 
@@ -31,26 +55,58 @@ const promptProject = portfolioData => {
   =================
   `);
   return inquirer.prompt([ 
+    // Question asking user for the name of their project
     {
       type: 'input',
       name: 'name',
-      message: 'What is the name of your project?'
+      message: 'What is the name of your project? (Required)',
+      validate: nameInput => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log('Please enter your project name!');
+        }
+      }
     },
+    // Question asking user for a description of their project
     {
       type: 'input',
       name: 'description',
-      message: 'Provide a description of the project (Required)'
+      message: 'Provide a description of the project (Required)',
+      validate: nameInput => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log('Please enter your project description!');
+        }
+      }
     },
+    // Question asking user to identify which coding lanquages were used to build their project
     {
       type: 'checkbox',
       name: 'languages',
-      message: 'What did you build this project with? (Check all that apply)',
-      choices: ['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node', 'Bulma']
+      message: 'What did you build this project with? (Check all that apply) (Required)',
+      choices: (['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node', 'Bulma']),
+      validate: checkbox => {
+        if (checkbox) {
+          return true;
+        } else {
+          console.log('Please select at least one checkbox!');
+        }
+      }
     },
+    // Question asking user to provide their GitHub link for the current project
     {
       type: 'input',
       name: 'link',
-      message: 'Enter the GitHub link to your project. (Required)'
+      message: 'Enter the GitHub link to your project. (Required)',
+      validate: nameInput => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log('Please enter your GitHub project link!');
+        }
+      }
     },
     {
       type: 'confirm',
