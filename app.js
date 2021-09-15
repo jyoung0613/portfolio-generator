@@ -30,17 +30,23 @@ const promptUser = () => {
     },
     // Question for info about user
     {
+      type: 'confirm',
+      name: 'confirmAbout',
+      message: 'Would you like to enter some information about yourself for an "About" section?',
+      default: true
+    },
+    {
       type: 'input',
       name: 'about',
-      message: 'Provide some information about yourself: (Required)',
-      validate: nameInput => {
-        if (nameInput) {
+      message: 'Provide some information about yourself:',
+      when: ({ confirmAbout }) => {
+        if (confirmAbout) {
           return true;
         } else {
-          console.log('Please enter detail in the about section for yourself!');
+          return false;
         }
       }
-    },
+    }
   ]);
 };
 
@@ -85,15 +91,8 @@ const promptProject = portfolioData => {
     {
       type: 'checkbox',
       name: 'languages',
-      message: 'What did you build this project with? (Check all that apply) (Required)',
+      message: 'What did you build this project with?(Check all that apply)',
       choices: (['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node', 'Bulma']),
-      validate: checkbox => {
-        if (checkbox) {
-          return true;
-        } else {
-          console.log('Please select at least one checkbox!');
-        }
-      }
     },
     // Question asking user to provide their GitHub link for the current project
     {
@@ -108,6 +107,7 @@ const promptProject = portfolioData => {
         }
       }
     },
+    // Question asking if user would like to feature this project
     {
       type: 'confirm',
       name: 'feature',
